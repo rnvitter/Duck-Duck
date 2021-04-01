@@ -1,42 +1,42 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import Home from '../views/Home.vue'
-import { auth } from '../main'
-
-const guard = (to, from, next) => {
-  try {
-    if (auth.currentUser?.uid) {
-      next();
-    }
-    else {
-      next('/');
-    }
-  } catch (error) {
-    next('/');
-  }
-}
+import { auth } from '@/firebase'
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     component: () => import('@/views/Authentication.vue')
   },
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home,
-    beforeEnter: guard
+    meta: {
+      auth: true
+    }
   },
   {
     path: '/polls/:id',
     name: 'Poll',
     component: () => import('../views/Poll.vue'),
-    beforeEnter: guard
+    meta: {
+      auth: true
+    }
   }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.auth)
+  if (requiresAuth && !auth.currentUser) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router

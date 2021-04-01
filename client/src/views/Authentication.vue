@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import {
  IonPage,
  IonContent,
@@ -78,7 +79,6 @@ import {
  IonLabel,
  IonItem,
 } from '@ionic/vue';
-import { auth, db } from '../main';
 
 export default {
  name: 'Authentication',
@@ -106,14 +106,18 @@ export default {
 
  },
  methods: {
+   ...mapActions([
+     'login',
+     'signup'
+   ]),
    async signInWithEmailAndPassword (email, password) {
      try {
         if (!email || !password) {
           this.errorMsg = 'Email and Password Required';
           return;
         }
-        await auth.signInWithEmailAndPassword(email, password);
-        this.$router.push('/home');
+        await this.login({ email, password });
+        this.$router.push('/');
         } catch (error) {
         this.errorMsg = error.message;
       }
@@ -124,15 +128,8 @@ export default {
         this.errorMsg = 'Name, Email, and Password Required';
         return;
       }
-      const authRes = await auth.createUserWithEmailAndPassword(
-      email,
-      password
-      );
-      db.collection('users').doc(authRes.user?.uid).set({
-        name,
-        email,
-      });
-      this.$router.push('/home');
+      await this.signup({ name, email, password });
+      this.$router.push('/');
     } catch (error) {
       this.errorMsg = error.message;
     }
