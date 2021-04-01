@@ -8,10 +8,10 @@ const guard = (to, from, next) => {
       next();
     }
     else {
-      next("/")
+      next('/');
     }
   } catch (error) {
-    next("/")
+    next('/');
   }
 }
 

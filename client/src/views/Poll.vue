@@ -1,5 +1,5 @@
 <template>
-  <layout :title="poll.name">
+  <layout :title="poll.name" :showBackButton="true">
     <div style="display: flex; align-items: center; justify-content: space-between; margin: 10px 0 30px;">
       <participants></participants>
       <div style="text-align: end;">
