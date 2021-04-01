@@ -1,20 +1,36 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import Home from '../views/Home.vue'
+import { auth } from '../main'
+
+const guard = (to, from, next) => {
+  try {
+    if (auth.currentUser?.uid) {
+      next();
+    }
+    else {
+      next("/")
+    }
+  } catch (error) {
+    next("/")
+  }
+}
 
 const routes = [
   {
     path: '/',
-    redirect: '/home'
+    component: () => import('@/views/Authentication.vue')
   },
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: Home,
+    beforeEnter: guard
   },
   {
     path: '/polls/:id',
     name: 'Poll',
-    component: () => import('../views/Poll.vue')
+    component: () => import('../views/Poll.vue'),
+    beforeEnter: guard
   }
 ]
 
