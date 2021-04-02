@@ -1,51 +1,121 @@
 <template>
-  <layout :title="poll.name" :showBackButton="true">
-    <div style="display: flex; align-items: center; justify-content: space-between; margin: 10px 0 30px;">
-      <participants></participants>
-      <div style="text-align: end;">
+  <layout :title="poll.name" :showBackButton="true" v-if="poll && id">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin: 0 0 30px;">
+      <!-- <participants :pollId="poll.id"></participants> -->
+      <div style="display: flex; align-items: center;">
+        <ion-avatar style="height: 40px; width: 40px;">
+          <img :src="poll.author.image">
+        </ion-avatar>
+        <div style="margin-left: 5px;">
+          <div style="font-size: 13px;">Created by</div>
+          <div style="font-weight: 700;">{{ poll.author.username }}</div>
+        </div>
+      </div>
+      <!-- <div style="text-align: end;">
         <div style="font-size: 13px; margin-bottom: 5px;">Poll Closes</div>
         <div>
           <strong>Friday 2:30pm</strong>
         </div>
-      </div>
+      </div> -->
     </div>
-    <ion-item
-      v-for="(item, index) in [...poll.items, ...poll.items]"
+    <div v-for="(item, index) in poll.items"
       :key="index"
-      class="poll-item"
-      lines="none"
-      style="margin-bottom: 10px;">
-      <span>{{ item }}</span>
-    </ion-item>
+      style="position: relative;">
+      <ion-item
+        class="poll-item"
+        lines="none"
+        style="margin-bottom: 10px; position: relative;"
+        @click="selectedVote = item">
+        <span>{{ item }}</span>
+      </ion-item>
+      <svg
+        v-if="isSelected(item)"
+        class="selected-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="blue">
+        <circle cx="10" cy="10" r="6" fill="white"/>
+        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg>
+    </div>
+
     <ion-button
       class="poll-submit"
-      expand="block">
-      Submit Votes
+      expand="block"
+      :disabled="savedVote && (!selectedVote || selectedVote === savedVote.vote)"
+      @click="updateVote({ savedVote, selectedVote })">
+      {{ savedVote && (selectedVote && selectedVote !== savedVote.vote) ? 'Change Vote' : 'Submit Votes' }}
     </ion-button>
   </layout>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { IonButton, IonItem } from '@ionic/vue';
+import { IonAvatar, IonButton, IonItem } from '@ionic/vue';
+import { mapActions, mapGetters } from 'vuex';
 
-import { Layout, Participants } from '@/components'
+import { Layout } from '@/components'
 
 export default defineComponent({
   name: 'Poll',
   components: {
+    IonAvatar,
     IonButton,
     IonItem,
-    Layout,
-    Participants
+    Layout
+  },
+  data: () => ({
+    selectedVote: null
+  }),
+  methods: {
+    ...mapActions([
+      'getVotes',
+      'setPolls',
+      'updateVote'
+    ]),
+    isSelected (item) {
+      if (this.savedVote) {
+        if (this.selectedVote && this.selectedVote !== this.savedVote.vote) {
+          return item === this.selectedVote
+        }
+        return item === this.savedVote.vote
+      } else if (this.selectedVote && this.selectedVote === item) {
+        return true
+      }
+    }
   },
   computed: {
+    ...mapGetters([
+      'userId'
+    ]),
     id () {
       return this.$route.params.id
     },
     poll () {
       return this.$store.getters.polls(this.id)
+    },
+    savedVote () {
+      return this.votes.find(v => v.user === this.userId)
+    },
+    votes () {
+      return this.$store.getters.votes(this.id)
     }
+  },
+  async beforeMount () {
+    if (this.$store.getters.polls().length === 0) {
+      await this.setPolls()
+    }
+    await this.getVotes(this.id)
   }
 })
 </script>
+
+<style>
+.selected-icon {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: -5px;
+  right: -5px;
+}
+</style>
