@@ -2,7 +2,7 @@
   <ion-list>
     <ion-item button router-link="/friends">Friends</ion-item>
     <ion-item button>Settings</ion-item>
-    <ion-item button>Log Out</ion-item>
+    <ion-item button @click="logout">Log Out</ion-item>
   </ion-list>
 </template>
 
@@ -11,12 +11,18 @@ import {
   IonList,
   IonItem
 } from '@ionic/vue';
+import { mapActions } from 'vuex';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   components: {
     IonList,
     IonItem
+  },
+  methods: {
+    ...mapActions([
+      'logout'
+    ])
   }
 })
 </script>
