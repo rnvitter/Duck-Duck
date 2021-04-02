@@ -3,11 +3,11 @@
     <ion-header>
       <ion-toolbar>
         <ion-buttons slot="start" v-if="showBackButton">
-          <ion-back-button></ion-back-button>
+          <ion-back-button defaultHref="/" text="Home"></ion-back-button>
         </ion-buttons>
         <ion-title>{{ title }}</ion-title>
         <ion-avatar style="height: 30px; width: 30px; margin-right: 4px;" slot="end" @click="openPopover">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          <img :src="userProfile.image ?? 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
         </ion-avatar>
       </ion-toolbar>
     </ion-header>
@@ -53,6 +53,7 @@ import {
   popoverController
 } from '@ionic/vue';
 import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
 
 import DropdownMenu from './DropdownMenu'
 
@@ -79,6 +80,11 @@ export default defineComponent({
     IonTitle,
     IonToolbar
   },
+  computed: {
+    ...mapGetters([
+      'userProfile'
+    ])
+  },
   methods: {
     async openPopover(ev) {
       const popover = await popoverController
@@ -90,10 +96,7 @@ export default defineComponent({
         })
       return popover.present();
     }
-  },
-  data: () => ({
-    showMenu: false
-  })
+  }
 });
 </script>
 
