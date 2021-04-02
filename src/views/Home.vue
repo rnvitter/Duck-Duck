@@ -2,7 +2,7 @@
   <layout>
     <!-- <h2>Polls</h2> -->
     <h2>Polls</h2>
-    <poll-item v-for="(poll, index) in [...polls, ...polls, ...polls]" :key="index" :poll="poll"></poll-item>
+    <poll-item v-for="(poll, index) in polls" :key="index" :poll="poll"></poll-item>
     <template v-slot:fab>
       <ion-fab vertical="bottom" horizontal="end" slot="fixed">
         <ion-fab-button @click="open = true">
@@ -26,6 +26,7 @@ import {
 } from '@ionic/vue';
 import { defineComponent } from 'vue';
 import { add } from 'ionicons/icons';
+import { mapActions } from 'vuex';
 
 import { Layout, PollItem, PollForm } from '@/components'
 
@@ -50,8 +51,16 @@ export default defineComponent({
       return this.$store.getters.polls()
     }
   },
+  methods: {
+    ...mapActions([
+      'setPolls'
+    ])
+  },
   data: () => ({
     open: false
-  })
+  }),
+  async beforeMount () {
+    await this.setPolls()
+  }
 });
 </script>

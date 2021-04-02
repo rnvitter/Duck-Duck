@@ -22,10 +22,12 @@ auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 
 const usersCollection = db.collection('users');
 const pollsCollection = db.collection('polls');
+const votesCollection = db.collection('votes');
 
 export {
   db,
   auth,
   usersCollection,
-  pollsCollection
+  pollsCollection,
+  votesCollection
 }
