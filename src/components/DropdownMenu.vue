@@ -1,6 +1,5 @@
 <template>
   <ion-list>
-    <ion-item button router-link="/friends">Friends</ion-item>
     <ion-item button>Settings</ion-item>
     <ion-item button @click="logout">Log Out</ion-item>
   </ion-list>
