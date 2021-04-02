@@ -6,7 +6,7 @@
           <ion-back-button></ion-back-button>
         </ion-buttons>
         <ion-title>{{ title }}</ion-title>
-        <ion-avatar style="height: 30px; width: 30px; margin-right: 4px;" slot="end">
+        <ion-avatar style="height: 30px; width: 30px; margin-right: 4px;" slot="end" @click="openPopover">
           <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
         </ion-avatar>
       </ion-toolbar>
@@ -41,8 +41,20 @@
 </template>
 
 <script>
-import { IonAvatar, IonButtons, IonBackButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import {
+  IonAvatar,
+  IonButtons,
+  IonBackButton,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  popoverController
+} from '@ionic/vue';
 import { defineComponent } from 'vue';
+
+import DropdownMenu from './DropdownMenu'
 
 export default defineComponent({
   name: 'Home',
@@ -66,7 +78,22 @@ export default defineComponent({
     IonPage,
     IonTitle,
     IonToolbar
-  }
+  },
+  methods: {
+    async openPopover(ev) {
+      const popover = await popoverController
+        .create({
+          component: DropdownMenu,
+          cssClass: 'my-custom-class',
+          event: ev,
+          translucent: true
+        })
+      return popover.present();
+    }
+  },
+  data: () => ({
+    showMenu: false
+  })
 });
 </script>
 
