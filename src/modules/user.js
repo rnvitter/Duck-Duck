@@ -1,5 +1,6 @@
 import * as fb from '@/firebase';
 import router from '@/router';
+import { auth } from '@/firebase';
 
 export default {
   state: {
@@ -42,6 +43,9 @@ export default {
     },
   },
   getters: {
+    userId () {
+      return auth.currentUser.uid
+    },
     userProfile (state) {
       return state.userProfile
     }

@@ -28,7 +28,7 @@ import './theme/variables.css';
 let app
 auth.onAuthStateChanged(user => {
   if (!app) {
-    const app = createApp(App)
+    app = createApp(App)
       .use(IonicVue)
       .use(router)
       .use(store);
