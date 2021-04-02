@@ -14,24 +14,24 @@
         <ion-label position="stacked">Poll Name</ion-label>
         <ion-input v-model="form.name" placeholder="Enter Poll Name" class="ion-no-border"></ion-input>
       </ion-item>
-      <ion-item lines="none">
+      <!-- <ion-item lines="none">
         <ion-label position="stacked">Participants</ion-label>
         <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
           <participants></participants>
           <ion-button @click="() => {}" size="small" style="float: right; margin-right: 10px;">Add</ion-button>
         </div>
-      </ion-item>
-      <ion-item lines="none">
+      </ion-item> -->
+      <!-- <ion-item lines="none">
         <ion-label position="stacked">Poll Close Time</ion-label>
         <ion-datetime value="1990-02-19" placeholder="Select Date"></ion-datetime>
-      </ion-item>
+      </ion-item> -->
       <ion-item lines="none">
-        <ion-label position="stacked">Options</ion-label>
+        <ion-label position="stacked">Items</ion-label>
         <ion-item-sliding
-          v-for="(option, index) in form.options"
+          v-for="(item, index) in form.items"
           :key="index">
           <ion-item class="poll-item" lines="none">
-            <ion-input :value="option" @input="option = $event" :placeholder="`Option ${index + 1}`" style="background: transparent;"></ion-input>
+            <ion-input :value="item" @input="item = $event" :placeholder="`Option ${index + 1}`" style="background: transparent;"></ion-input>
           </ion-item>
 
           <ion-item-options side="end" style="border-bottom: none;">
@@ -39,10 +39,11 @@
           </ion-item-options>
         </ion-item-sliding>
       </ion-item>
-      <ion-button @click="form.options.push('')" size="small" style="float: right; margin-right: 10px;">Add</ion-button>
+      <ion-button @click="form.items.push('')" size="small" style="float: right; margin-right: 10px;">Add</ion-button>
       <ion-button
         class="poll-submit"
-        expand="block">
+        expand="block"
+        @click="createPoll(form)">
         Create Poll
       </ion-button>
     </ion-content>
@@ -54,37 +55,44 @@ import {
   IonButton,
   IonButtons,
   IonContent,
-  IonDatetime,
   IonHeader,
   IonInput,
   IonItem,
+  IonItemOption,
+  IonItemOptions,
+  IonItemSliding,
   IonLabel,
   IonTitle,
   IonToolbar,
 } from '@ionic/vue';
 import { defineComponent } from 'vue';
-
-import Participants from './Participants'
+import { mapActions } from 'vuex';
 
 export default defineComponent({
   components: {
     IonButton,
     IonButtons,
     IonContent,
-    IonDatetime,
     IonHeader,
     IonInput,
     IonItem,
+    IonItemOption,
+    IonItemOptions,
+    IonItemSliding,
     IonLabel,
     IonTitle,
-    IonToolbar,
-    Participants
+    IonToolbar
   },
   data: () => ({
     form: {
       name: '',
-      options: ['', '']
+      items: ['', '']
     },
-  })
+  }),
+  methods: {
+    ...mapActions([
+      'createPoll'
+    ])
+  }
 })
 </script>
