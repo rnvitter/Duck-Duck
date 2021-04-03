@@ -20,7 +20,7 @@
         <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
       </svg>
     </div>
-    <div style="height: 180px; text-align: center; opacity: 0.5;">
+    <div class="ion-text-center" style="height: 120px; opacity: 0.5;">
       {{ votes.length }} {{ votes.length === 1 ? 'vote' : 'votes' }}
     </div>
     <div class="bottom-fade"></div>
@@ -158,7 +158,7 @@ export default {
   pointer-events: none;
   background-image: linear-gradient(to bottom, rgba(250,250,250, 0), rgba(250,250,250, 1) 70%, rgba(250,250,250, 1) 100%);
   width: 100%;
-  height: 200px;
+  height: 150px;
 }
 
 .selected-icon {

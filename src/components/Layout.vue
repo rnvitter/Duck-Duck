@@ -6,7 +6,7 @@
           <ion-back-button defaultHref="/" text="Home"></ion-back-button>
         </ion-buttons>
         <ion-title>Duck Duck</ion-title>
-        <ion-avatar style="height: 30px; width: 30px; margin-right: 4px;" slot="end" @click="openPopover">
+        <ion-avatar style="height: 30px; width: 30px; margin-right: 10px;" slot="end" @click="openPopover">
           <img :src="userProfile.image">
         </ion-avatar>
       </ion-toolbar>

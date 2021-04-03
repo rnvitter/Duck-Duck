@@ -45,7 +45,7 @@
             </ion-item-options>
           </ion-item-sliding>
         </ion-list>
-        <div style="height: 100px; text-align: center; opacity: 0.5;">
+        <div class="ion-text-center" style="height: 100px; opacity: 0.5;">
           Swipe to delete
         </div>
       </div>

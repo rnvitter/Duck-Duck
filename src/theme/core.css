@@ -1,0 +1,127 @@
+/* ionic project css var overrides */
+ion-toolbar {
+  --min-height: 60px;
+}
+
+ion-content {
+  --background: #fafafa;
+  --padding-bottom: 30px;
+}
+
+ion-item {
+  --background: transparent;
+}
+
+form ion-item,
+.poll-form ion-item {
+  --padding-start: 0;
+}
+
+.button {
+  --border-radius: 25px;
+}
+
+/* custom css */
+
+h2 {
+  font-weight: 700;
+  text-align: center;
+}
+
+.title-large {
+  font-size: 24px;
+}
+
+ion-icon {
+  color: white;
+}
+
+.poll-item {
+  width: 100%;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 20px;
+  background: white;
+  box-shadow: 0 1px 4px 1px rgba(0,0,0,0.05) !important;
+  z-index: 0;
+  margin: 20px 0;
+  padding: 0px;
+}
+
+.action-button {
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.poll-submit {
+  position: fixed;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  border-radius: 25px;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+/* reusable classes */
+.mb-lg {
+  margin-bottom: 20px;
+}
+
+.mb-md {
+  margin-bottom: 10px;
+}
+
+.mb-sm {
+  margin-bottom: 5px;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-content {
+  justify-content: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.font-lg {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+@media only screen and (min-width: 600px) {
+  .action-button {
+    max-width: 400px;
+    margin: 20px auto;
+  }
+
+  #home .poll-item {
+    width: calc(50% - 20px);
+    margin: 10px;
+    display: inline-block;
+  }
+
+  .poll-submit {
+    padding: 0;
+  }
+}
