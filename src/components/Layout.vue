@@ -7,7 +7,7 @@
         </ion-buttons>
         <ion-title>{{ title }}</ion-title>
         <ion-avatar style="height: 30px; width: 30px; margin-right: 4px;" slot="end" @click="openPopover">
-          <img :src="userProfile.image ?? 'https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y'">
+          <img :src="userProfile.image">
         </ion-avatar>
       </ion-toolbar>
     </ion-header>
@@ -15,6 +15,7 @@
     <ion-content style="position: relative; padding-bottom: 0;">
       <div class="top-ad"></div>
       <div id="container">
+        <h2>{{ title }}</h2>
         <slot />
       </div>
     </ion-content>

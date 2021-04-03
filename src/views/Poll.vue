@@ -1,9 +1,6 @@
 <template>
-  <layout :showBackButton="true" v-if="poll && id">
-    <div>
-      <h2>{{ poll.name }}</h2>
-      <author class="mb-lg" :author="poll.author"></author>
-    </div>
+  <layout :showBackButton="true" :title="poll.name" v-if="poll && id">
+    <author class="mb-lg" :author="poll.author"></author>
     <div v-for="(item, index) in poll.items"
       :key="index"
       style="position: relative;">
