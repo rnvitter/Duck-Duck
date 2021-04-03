@@ -1,6 +1,5 @@
 import * as fb from '@/firebase';
-// import { db } from '../firebase';
-// import { auth } from '@/firebase';
+import { auth } from '@/firebase';
 
 const store = {
   state: {
@@ -33,18 +32,30 @@ const store = {
     }
   },
   actions: {
-    async createPoll(state, poll) {
+    async createPoll({ rootState }, poll) {
+      const user = rootState.user.userProfile
       // create post in firebase
       await fb.pollsCollection.add({
         name: poll.name,
         items: poll.items,
-        created: new Date()
-        // createdBy: auth.currentUser
+        created: new Date(),
+        author: {
+          userId: auth.currentUser.uid,
+          username: user.username,
+          image: user.image
+        }
       })
     },
-    async updateVote (state, { savedVote, selectedVote }) {
-      await fb.votesCollection.doc(savedVote.id).update({
-        vote: selectedVote
+    async addVote (state, { poll, user, vote }) {
+      await fb.votesCollection.add({
+        poll,
+        user,
+        vote
+      })
+    },
+    async updateVote (state, { voteId, vote }) {
+      await fb.votesCollection.doc(voteId).update({
+        vote
       })
     },
     async setPolls ({ commit }) {

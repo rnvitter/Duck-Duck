@@ -60,13 +60,26 @@ export default defineComponent({
       'updateVote'
     ]),
     isSelected (item) {
-      if (this.savedVote) {
-        if (this.selectedVote && this.selectedVote !== this.savedVote.vote) {
-          return item === this.selectedVote
+      const savedVote = this.savedVote
+      const selectedVote = this.selectedVote
+      if (savedVote) {
+        if (selectedVote && selectedVote !== savedVote.vote) {
+          return item === selectedVote
         }
-        return item === this.savedVote.vote
-      } else if (this.selectedVote && this.selectedVote === item) {
+        return item === savedVote.vote
+      } else if (selectedVote && selectedVote === item) {
         return true
+      }
+    },
+    saveVote () {
+      if (!this.savedVote) {
+        this.saveVote({
+          poll: this.poll.id,
+          user: this.userId,
+          vote: this.selectedVote
+        })
+      } else {
+        this.updateVote({ voteId: this.savedVote, vote: this.selectedVote })
       }
     }
   },
@@ -80,11 +93,21 @@ export default defineComponent({
     poll () {
       return this.$store.getters.polls(this.id)
     },
+    disableSave () {
+      const case1 = this.savedVote && (!this.selectedVote || this.selectedVote === this.savedVote.vote)
+      const case2 = !this.savedVote && !this.selectedVote
+      return case1 || case2
+    },
     savedVote () {
       return this.votes.find(v => v.user === this.userId)
     },
     votes () {
       return this.$store.getters.votes(this.id)
+    },
+    voteButtonText () {
+      const savedVote = this.savedVote
+      const selectedVote = this.selectedVote
+      return savedVote && (selectedVote && selectedVote !== savedVote.vote) ? 'Change Vote' : 'Submit Votes'
     }
   },
   async beforeMount () {
@@ -103,5 +126,6 @@ export default defineComponent({
   width: 30px;
   top: -5px;
   right: -5px;
+  fill: var(--ion-color-primary);
 }
 </style>
