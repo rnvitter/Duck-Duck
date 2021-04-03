@@ -1,6 +1,5 @@
 <template>
   <ion-list lines="none">
-    <ion-item button lines="none" router-link="/settings">Settings</ion-item>
     <ion-item button @click="logout" lines="none">Log Out</ion-item>
   </ion-list>
 </template>
