@@ -11,9 +11,8 @@ import {
   IonItem
 } from '@ionic/vue';
 import { mapActions } from 'vuex';
-import { defineComponent } from 'vue';
 
-export default defineComponent({
+export default {
   components: {
     IonList,
     IonItem
@@ -23,5 +22,5 @@ export default defineComponent({
       'logout'
     ])
   }
-})
+}
 </script>

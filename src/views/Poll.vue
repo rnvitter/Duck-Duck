@@ -39,13 +39,12 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
 import { IonButton, IonItem, toastController } from '@ionic/vue';
 import { mapActions, mapGetters } from 'vuex';
 
 import { Author, Layout } from '@/components'
 
-export default defineComponent({
+export default {
   name: 'Poll',
   components: {
     Author,
@@ -151,7 +150,7 @@ export default defineComponent({
     }
     await this.getVotes(this.id)
   }
-})
+}
 </script>
 
 <style>

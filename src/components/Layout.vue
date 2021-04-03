@@ -33,12 +33,11 @@ import {
   IonToolbar,
   popoverController
 } from '@ionic/vue';
-import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
 
 import DropdownMenu from './DropdownMenu'
 
-export default defineComponent({
+export default {
   name: 'Home',
   props: {
     showBackButton: {
@@ -89,7 +88,7 @@ export default defineComponent({
       }
     }
   }
-});
+};
 </script>
 
 <style>

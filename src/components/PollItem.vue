@@ -20,11 +20,10 @@ import {
   IonCardTitle,
   IonCardHeader
 } from '@ionic/vue';
-import { defineComponent } from 'vue';
 
 import { Author } from '@/components'
 
-export default defineComponent({
+export default {
   name: 'PollItem',
   components: {
     Author,
@@ -39,5 +38,5 @@ export default defineComponent({
       required: true
     }
   }
-})
+}
 </script>

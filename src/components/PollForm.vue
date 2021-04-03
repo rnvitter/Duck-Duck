@@ -79,10 +79,9 @@ import {
   loadingController,
   toastController
 } from '@ionic/vue';
-import { defineComponent } from 'vue';
 import { mapActions } from 'vuex';
 
-export default defineComponent({
+export default {
   components: {
     IonButton,
     IonButtons,
@@ -134,7 +133,7 @@ export default defineComponent({
       return toast.present();
     }
   }
-})
+}
 </script>
 
 <style>

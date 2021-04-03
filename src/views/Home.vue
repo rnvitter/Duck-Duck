@@ -20,13 +20,12 @@ import {
   IonButton,
   IonModal
 } from '@ionic/vue';
-import { defineComponent } from 'vue';
 import { add } from 'ionicons/icons';
 import { mapActions } from 'vuex';
 
 import { Layout, PollItem, PollForm } from '@/components'
 
-export default defineComponent({
+export default {
   name: 'Home',
   components: {
     IonButton,
@@ -56,5 +55,5 @@ export default defineComponent({
   async beforeMount () {
     await this.setPolls()
   }
-});
+};
 </script>
