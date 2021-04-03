@@ -8,9 +8,9 @@
       :key="index"
       style="position: relative;">
       <ion-item
-        class="poll-item"
+        class="poll-item mb-md"
         lines="none"
-        style="margin-bottom: 10px; position: relative; background: white;"
+        :style="`background-image: ${getGradient(item)};`"
         @click="selectedVote = item">
         <span>{{ item }}</span>
       </ion-item>
@@ -22,6 +22,9 @@
         <circle cx="10" cy="10" r="6" fill="white"/>
         <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
       </svg>
+    </div>
+    <div style="text-align: center; opacity: 0.5;">
+      {{ votes.length }} {{ votes.length === 1 ? 'vote' : 'votes' }}
     </div>
 
     <ion-button
@@ -60,6 +63,13 @@ export default defineComponent({
       'setPolls',
       'updateVote'
     ]),
+    getGradient (item) {
+      const color = '#ffe6b3';
+      const totalVotes = this.votes.length;
+      const votesFor = this.votes.filter(v => v.vote === item).length;
+      const perc = (votesFor / totalVotes) * 100
+      return `linear-gradient(90deg, ${color} 0%, ${color} ${perc}%, white ${perc}%, white 100%);`;
+    },
     isSelected (item) {
       const savedVote = this.savedVote
       const selectedVote = this.selectedVote
@@ -131,5 +141,11 @@ export default defineComponent({
   top: -5px;
   right: -5px;
   fill: var(--ion-color-primary);
+}
+
+.poll-answer {
+  position: relative;
+  background: white;
+  transition: .3s ease-in-out;
 }
 </style>
