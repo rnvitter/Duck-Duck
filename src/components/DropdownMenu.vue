@@ -1,7 +1,7 @@
 <template>
-  <ion-list>
-    <ion-item button>Settings</ion-item>
-    <ion-item button @click="logout">Log Out</ion-item>
+  <ion-list lines="none">
+    <ion-item button lines="none" router-link="/settings">Settings</ion-item>
+    <ion-item button @click="logout" lines="none">Log Out</ion-item>
   </ion-list>
 </template>
 
