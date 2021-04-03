@@ -3,19 +3,19 @@ http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
 :root {
-  --ion-background-color: #fafafa;
+  --ion-background-color: #ffffff;
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #FFAC00;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-shade: #e69900;
+  --ion-color-primary-tint: #ffbb33;
 
   /** secondary **/
-  --ion-color-secondary: #3dc2ff;
+  --ion-color-secondary: #FFFAC2;
   --ion-color-secondary-rgb: 61, 194, 255;
-  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast: #2c1a1a;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
   --ion-color-secondary-shade: #36abe0;
   --ion-color-secondary-tint: #50c8ff;
@@ -84,6 +84,7 @@ http://ionicframework.com/docs/theming/ */
 
 h2 {
   font-weight: 700;
+  text-align: center;
 }
 
 .title-large {
@@ -99,10 +100,17 @@ ion-icon {
   border-radius: 25px;
   font-weight: bold;
   font-size: 18px;
-  margin: 5px 0;
-  padding: 10px 4px;
-  border: 1px solid #bdbdbd;
+  padding: 10px 20px;
+  background: white;
+  box-shadow: 0 1px 4px 1px rgba(0,0,0,0.05) !important;
   z-index: 0;
+}
+
+.action-button {
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
 }
 
 .poll-submit {
@@ -110,12 +118,58 @@ ion-icon {
   width: 100%;
   left: 0;
   bottom: 10px;
-  padding: 0 20px;
   border-radius: 25px;
-  font-weight: bold;
-  font-size: 18px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
+}
+
+ion-toolbar {
+  --min-height: 60px;
+}
+
+ion-content {
+  --background: #fafafa;
+  --padding-bottom: 30px;
+}
+
+ion-item {
+  --background: transparent;
+  --padding-start: 0;
+}
+
+/* reusable classes */
+.mb-lg {
+  margin-bottom: 20px;
+}
+
+.mb-md {
+  margin-bottom: 10px;
+}
+
+.mb-sm {
+  margin-bottom: 5px;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-content {
+  justify-content: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 @media (prefers-color-scheme: dark) {

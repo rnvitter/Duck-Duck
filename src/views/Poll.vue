@@ -10,7 +10,7 @@
       <ion-item
         class="poll-item"
         lines="none"
-        style="margin-bottom: 10px; position: relative;"
+        style="margin-bottom: 10px; position: relative; background: white;"
         @click="selectedVote = item">
         <span>{{ item }}</span>
       </ion-item>
