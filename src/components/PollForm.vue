@@ -132,7 +132,7 @@ export default defineComponent({
           position: 'top'
         })
       return toast.present();
-    },
+    }
   }
 })
 </script>

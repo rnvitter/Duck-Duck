@@ -40,7 +40,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { IonButton, IonItem } from '@ionic/vue';
+import { IonButton, IonItem, toastController } from '@ionic/vue';
 import { mapActions, mapGetters } from 'vuex';
 
 import { Author, Layout } from '@/components'
@@ -82,19 +82,40 @@ export default defineComponent({
         return true
       }
     },
-    voteButtonPress () {
+    async voteButtonPress () {
       if (!this.savedVote) {
-        this.saveVote({
-          poll: this.poll.id,
-          user: this.userId,
-          vote: this.selectedVote
-        })
+        try {
+          await this.saveVote({
+            poll: this.poll.id,
+            user: this.userId,
+            vote: this.selectedVote
+          })
+          this.openToast('Vote saved successfully', 'success')
+        } catch (error) {
+          this.openToast('Vote saved failed', 'danger')
+        }
       } else {
-        this.updateVote({
-          voteId: this.savedVote.id,
-          vote: this.selectedVote
-        })
+        try {
+          this.updateVote({
+            voteId: this.savedVote.id,
+            vote: this.selectedVote
+          })
+          this.openToast('Vote updated successfully', 'success')
+        } catch (error) {
+          this.openToast('Vote updated failed', 'danger')
+        }
       }
+    },
+    // TODO: move this to a reusable file
+    async openToast (text, type) {
+      const toast = await toastController
+        .create({
+          message: text,
+          duration: 2000,
+          color: type,
+          position: 'top'
+        })
+      return toast.present();
     }
   },
   computed: {
