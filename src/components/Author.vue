@@ -5,7 +5,7 @@
     </ion-avatar>
     <div style="margin-left: 8px;">
       <span style="font-weight: 400;">Created by </span>
-      <span style="font-weight: 700;">{{ author.username }}</span>
+      <span style="font-weight: 700;">{{ author.name }}</span>
     </div>
   </div>
 </template>

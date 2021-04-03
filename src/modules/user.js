@@ -1,6 +1,7 @@
 import * as fb from '@/firebase';
 import router from '@/router';
 import { auth } from '@/firebase';
+import md5 from 'md5';
 
 export default {
   state: {
@@ -19,9 +20,18 @@ export default {
     async signup ({ dispatch }, form) {
       const { user } = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
 
+      const imageUrl = [
+        `https://www.gravatar.com/avatar/`,
+        md5('ryanvitter@gmail.com'.trim().toLowerCase()),
+        `?s=60`,
+        `&d=retro`
+      ];
+      const image = imageUrl.join('')
+
       await fb.usersCollection.doc(user.uid).set({
         name: form.name,
-        email: form.email
+        email: form.email,
+        image
       })
 
       dispatch('fetchUserProfile', user)

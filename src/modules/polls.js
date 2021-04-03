@@ -41,7 +41,7 @@ const store = {
         created: new Date(),
         author: {
           userId: auth.currentUser.uid,
-          username: user.username,
+          name: user.name,
           image: user.image
         }
       })
