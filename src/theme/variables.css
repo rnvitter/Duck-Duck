@@ -13,12 +13,12 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-primary-tint: #ffbb33;
 
   /** secondary **/
-  --ion-color-secondary: #FFFAC2;
+  --ion-color-secondary: #ffd741;
   --ion-color-secondary-rgb: 61, 194, 255;
   --ion-color-secondary-contrast: #2c1a1a;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #36abe0;
-  --ion-color-secondary-tint: #50c8ff;
+  --ion-color-secondary-shade: #e6c23b;
+  --ion-color-secondary-tint: #fff3c6;
 
   /** tertiary **/
   --ion-color-tertiary: #5260ff;
@@ -75,101 +75,6 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
-}
-
-/* button */
-.button {
-  --border-radius: 25px;
-}
-
-h2 {
-  font-weight: 700;
-  text-align: center;
-}
-
-.title-large {
-  font-size: 24px;
-}
-
-ion-icon {
-  color: white;
-}
-
-.poll-item {
-  width: 100%;
-  border-radius: 25px;
-  font-weight: bold;
-  font-size: 18px;
-  padding: 10px 20px;
-  background: white;
-  box-shadow: 0 1px 4px 1px rgba(0,0,0,0.05) !important;
-  z-index: 0;
-}
-
-.action-button {
-  font-weight: bold;
-  font-size: 18px;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-}
-
-.poll-submit {
-  position: fixed;
-  width: 100%;
-  left: 0;
-  bottom: 10px;
-  border-radius: 25px;
-}
-
-ion-toolbar {
-  --min-height: 60px;
-}
-
-ion-content {
-  --background: #fafafa;
-  --padding-bottom: 30px;
-}
-
-ion-item {
-  --background: transparent;
-  --padding-start: 0;
-}
-
-/* reusable classes */
-.mb-lg {
-  margin-bottom: 20px;
-}
-
-.mb-md {
-  margin-bottom: 10px;
-}
-
-.mb-sm {
-  margin-bottom: 5px;
-}
-
-.flex {
-  display: flex;
-}
-
-.align-center {
-  align-items: center;
-}
-
-.justify-content {
-  justify-content: center;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -329,4 +234,109 @@ ion-item {
 
     --ion-card-background: #1e1e1e;
   }
+}
+
+/* ionic project css var overrides */
+ion-toolbar {
+  --min-height: 60px;
+}
+
+ion-content {
+  --background: #fafafa;
+  --padding-bottom: 30px;
+}
+
+ion-item {
+  --background: transparent;
+}
+
+.poll-form ion-item {
+  --padding-start: 0;
+}
+
+.button {
+  --border-radius: 25px;
+}
+
+/* custom css */
+
+h2 {
+  font-weight: 700;
+  text-align: center;
+}
+
+.title-large {
+  font-size: 24px;
+}
+
+ion-icon {
+  color: white;
+}
+
+.poll-item {
+  width: 100%;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 20px;
+  background: white;
+  box-shadow: 0 1px 4px 1px rgba(0,0,0,0.05) !important;
+  z-index: 0;
+}
+
+.action-button {
+  font-weight: bold;
+  font-size: 18px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.poll-submit {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 10px;
+  border-radius: 25px;
+}
+
+/* reusable classes */
+.mb-lg {
+  margin-bottom: 20px;
+}
+
+.mb-md {
+  margin-bottom: 10px;
+}
+
+.mb-sm {
+  margin-bottom: 5px;
+}
+
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-content {
+  justify-content: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.font-lg {
+  font-size: 20px;
+  font-weight: bold;
 }

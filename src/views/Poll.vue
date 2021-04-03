@@ -64,7 +64,7 @@ export default defineComponent({
       'updateVote'
     ]),
     getGradient (item) {
-      const color = '#ffe6b3';
+      const color = 'var(--ion-color-secondary-tint)';
       const totalVotes = this.votes.length;
       const votesFor = this.votes.filter(v => v.vote === item).length;
       const perc = (votesFor / totalVotes) * 100
