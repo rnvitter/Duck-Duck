@@ -61,6 +61,9 @@ export default defineComponent({
     IonTitle,
     IonToolbar
   },
+  data: () => ({
+    popover: null
+  }),
   computed: {
     ...mapGetters([
       'userProfile'
@@ -68,14 +71,22 @@ export default defineComponent({
   },
   methods: {
     async openPopover(ev) {
-      const popover = await popoverController
+      this.popover = await popoverController
         .create({
           component: DropdownMenu,
           cssClass: 'my-custom-class',
           event: ev,
           translucent: true
         })
-      return popover.present();
+      return this.popover.present();
+    }
+  },
+  watch: {
+    $route () {
+      if (this.popover) {
+        this.popover.dismiss();
+        this.popover = null;
+      }
     }
   }
 });
