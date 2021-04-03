@@ -103,6 +103,9 @@ export default {
     'login',
     'signup'
   ]),
+  resetData () {
+    Object.assign(this.$data, initialState())
+  },
   async signInWithEmailAndPassword (email, password) {
     try {
       if (!email || !password) {
@@ -111,6 +114,7 @@ export default {
       }
       await this.login({ email, password });
       this.$router.push('/');
+      this.resetData();
       } catch (error) {
       this.errorMsg = error.message;
     }
@@ -123,6 +127,7 @@ export default {
       }
       await this.signup({ name, email, password });
       this.$router.push('/');
+      this.resetData();
     } catch (error) {
       this.errorMsg = error.message;
     }
