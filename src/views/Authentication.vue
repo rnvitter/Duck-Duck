@@ -8,9 +8,9 @@
 
     <ion-content :fullscreen="true">
       <ion-card style="box-shadow: none;">
-        <ion-card-header>
-          <ion-card-subtitle>Welcome to Duck Duck</ion-card-subtitle>
-          <ion-card-title>{{ mode === 'SignIn' ? 'Sign In' : 'Create An Account' }}</ion-card-title>
+        <ion-card-header style="text-align: center;">
+          <img src="assets/duck-duck-logo-2.png" style="width: 80px; height: auto; margin-bottom: 10px;">
+          <ion-card-title>Welcome to Duck Duck</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
@@ -70,7 +70,6 @@ import {
  IonPage,
  IonContent,
  IonCard,
- IonCardSubtitle,
  IonCardTitle,
  IonCardHeader,
  IonCardContent,
@@ -86,7 +85,6 @@ export default {
   IonContent,
   IonPage,
   IonCard,
-  IonCardSubtitle,
   IonCardTitle,
   IonCardHeader,
   IonCardContent,
