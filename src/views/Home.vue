@@ -1,15 +1,13 @@
 <template>
   <layout>
-    <!-- <h2>Polls</h2> -->
     <h2>Polls</h2>
+    <ion-button
+      class="action-button mb-lg"
+      expand="block"
+      @click="open = true">
+      Create Poll
+    </ion-button>
     <poll-item v-for="(poll, index) in polls" :key="index" :poll="poll"></poll-item>
-    <template v-slot:fab>
-      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button @click="open = true">
-          <ion-icon :icon="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </template>
     <ion-modal
       :is-open="open">
       <poll-form @close="open = false"></poll-form>
@@ -19,9 +17,7 @@
 
 <script>
 import {
-  IonIcon,
-  IonFab,
-  IonFabButton,
+  IonButton,
   IonModal
 } from '@ionic/vue';
 import { defineComponent } from 'vue';
@@ -33,9 +29,7 @@ import { Layout, PollItem, PollForm } from '@/components'
 export default defineComponent({
   name: 'Home',
   components: {
-    IonIcon,
-    IonFab,
-    IonFabButton,
+    IonButton,
     IonModal,
     Layout,
     PollItem,
@@ -48,7 +42,7 @@ export default defineComponent({
   },
   computed: {
     polls () {
-      return this.$store.getters.polls()
+      return this.$store.getters.polls();
     }
   },
   methods: {
