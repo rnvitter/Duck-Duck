@@ -250,6 +250,7 @@ ion-item {
   --background: transparent;
 }
 
+form ion-item,
 .poll-form ion-item {
   --padding-start: 0;
 }
@@ -282,6 +283,8 @@ ion-icon {
   background: white;
   box-shadow: 0 1px 4px 1px rgba(0,0,0,0.05) !important;
   z-index: 0;
+  margin: 20px 0;
+  padding: 0px;
 }
 
 .action-button {
@@ -294,10 +297,12 @@ ion-icon {
 .poll-submit {
   position: fixed;
   width: 100%;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 10px;
   border-radius: 25px;
   z-index: 2;
+  padding: 0 20px;
 }
 
 /* reusable classes */
@@ -340,4 +345,21 @@ ion-icon {
 .font-lg {
   font-size: 20px;
   font-weight: bold;
+}
+
+@media only screen and (min-width: 600px) {
+  .action-button {
+    max-width: 400px;
+    margin: 20px auto;
+  }
+
+  #home .poll-item {
+    width: calc(50% - 20px);
+    margin: 10px;
+    display: inline-block;
+  }
+
+  .poll-submit {
+    padding: 0;
+  }
 }

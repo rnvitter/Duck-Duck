@@ -3,11 +3,11 @@
     <author class="mb-lg" :author="poll.author"></author>
     <div v-for="(item, index) in poll.items"
       :key="index"
-      style="position: relative;">
+      class="poll-item-wrapper">
       <ion-item
         class="poll-item mb-md"
         lines="none"
-        :style="`background-image: ${getGradient(item)};`"
+        :style="`background-image: ${getGradient(item)}; padding: 10px;`"
         @click="selectedVote = item">
         <span>{{ item }}</span>
       </ion-item>
@@ -26,7 +26,6 @@
     <div class="bottom-fade"></div>
     <ion-button
       class="action-button poll-submit"
-      style="padding: 0 20px;"
       expand="block"
       :disabled="disableSave"
       @click="voteButtonPress">
@@ -175,5 +174,11 @@ export default {
   position: relative;
   background: white;
   transition: .3s ease-in-out;
+}
+
+.poll-item-wrapper {
+  position: relative;
+  margin: 0 auto;
+  max-width: 400px;
 }
 </style>

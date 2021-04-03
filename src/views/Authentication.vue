@@ -9,12 +9,11 @@
     <ion-content :fullscreen="true">
       <ion-card style="box-shadow: none; background: transparent; top: 50%; transform: translateY(-55%);">
         <ion-card-header style="text-align: center;">
-          <!-- <div>Welcome to Duck Duck</div> -->
+          <ion-card-title>Duck Duck</ion-card-title>
           <img src="assets/duck-duck-logo-3.png" style="width: 200px; height: auto;">
-          <!-- <ion-card-title>Sign In</ion-card-title> -->
         </ion-card-header>
 
-        <ion-card-content>
+        <ion-card-content style="max-width: 400px; margin: 0 auto;">
           <form
             @submit.prevent="
               mode === 'SignIn'
@@ -69,6 +68,7 @@ import {
  IonContent,
  IonCard,
  IonCardHeader,
+ IonCardTitle,
  IonCardContent,
  IonInput,
  IonButton,
@@ -92,6 +92,7 @@ export default {
   IonPage,
   IonCard,
   IonCardHeader,
+  IonCardTitle,
   IonCardContent,
   IonInput,
   IonItem,

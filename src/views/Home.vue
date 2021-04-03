@@ -1,5 +1,5 @@
 <template>
-  <layout title="Polls">
+  <layout title="Polls" id="home">
     <ion-button
       class="action-button mb-lg"
       expand="block"

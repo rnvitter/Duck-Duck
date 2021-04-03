@@ -5,7 +5,7 @@
         <ion-buttons slot="start" v-if="showBackButton">
           <ion-back-button defaultHref="/" text="Home"></ion-back-button>
         </ion-buttons>
-        <ion-title>{{ title }}</ion-title>
+        <ion-title>Duck Duck</ion-title>
         <ion-avatar style="height: 30px; width: 30px; margin-right: 4px;" slot="end" @click="openPopover">
           <img :src="userProfile.image">
         </ion-avatar>
@@ -13,7 +13,7 @@
     </ion-header>
 
     <ion-content style="position: relative; padding-bottom: 0;">
-      <div class="top-ad"></div>
+      <!-- <div class="top-ad"></div> -->
       <div id="container">
         <h2>{{ title }}</h2>
         <slot />
@@ -98,11 +98,11 @@ export default {
   background: #fafafa;
   padding: 15px;
   height: 100%;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
+  /* border-top-left-radius: 30px;
+  border-top-right-radius: 30px; */
   position: absolute;
   width: 100%;
-  top: 120px;
+  top: 0;
   padding-bottom: 20px;
 }
 

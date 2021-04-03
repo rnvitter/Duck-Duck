@@ -2,8 +2,7 @@
   <ion-card
     v-if="poll"
     :router-link="`/polls/${poll.id}`"
-    class="poll-item"
-    style="margin: 20px 0; padding: 0px;">
+    class="poll-item">
     <ion-card-header>
       <ion-card-title style="font-size: 18px;">{{ poll.name }}</ion-card-title>
     </ion-card-header>
