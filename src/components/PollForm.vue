@@ -10,12 +10,12 @@
       </ion-toolbar>
     </ion-header>
     <ion-content fullscreen padding>
-      <div style="padding: 20px; background: #fafafa; height: 100%;">
+      <div class="poll-form">
         <ion-item class="mb-lg">
           <ion-input
             v-model="form.name"
             placeholder="Enter Poll Name"
-            class="poll-name ion-no-border">
+            class="ion-no-border">
           </ion-input>
         </ion-item>
         <div class="mb-lg flex-between">
@@ -136,3 +136,11 @@ export default defineComponent({
   }
 })
 </script>
+
+<style>
+.poll-form {
+  padding: 20px;
+  background: #fafafa;
+  height: 100%;
+}
+</style>
