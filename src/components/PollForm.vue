@@ -9,41 +9,52 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    <ion-content fullscreen style="padding: 10px;">
-      <ion-item lines="none">
-        <ion-label position="stacked">Poll Name</ion-label>
-        <ion-input v-model="form.name" placeholder="Enter Poll Name" class="ion-no-border"></ion-input>
-      </ion-item>
-      <!-- <ion-item lines="none">
-        <ion-label position="stacked">Participants</ion-label>
-        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
-          <participants></participants>
-          <ion-button @click="() => {}" size="small" style="float: right; margin-right: 10px;">Add</ion-button>
+    <ion-content fullscreen padding>
+      <div style="padding: 20px; background: #fafafa; height: 100%;">
+        <ion-item class="mb-lg">
+          <ion-input
+            v-model="form.name"
+            placeholder="Enter Poll Name"
+            class="poll-name ion-no-border">
+          </ion-input>
+        </ion-item>
+        <div class="mb-lg flex-between">
+          <ion-label>Answers</ion-label>
+          <ion-button @click="form.items.push('')" size="small" style="float: right; margin-right: 10px;">Add Answer</ion-button>
         </div>
-      </ion-item> -->
-      <!-- <ion-item lines="none">
-        <ion-label position="stacked">Poll Close Time</ion-label>
-        <ion-datetime value="1990-02-19" placeholder="Select Date"></ion-datetime>
-      </ion-item> -->
-      <ion-item lines="none">
-        <ion-label position="stacked">Items</ion-label>
-        <ion-item-sliding
-          v-for="(item, index) in form.items"
-          :key="index">
-          <ion-item class="poll-item" lines="none">
-            <ion-input :value="item" @input="item = $event" :placeholder="`Option ${index + 1}`" style="background: transparent;"></ion-input>
-          </ion-item>
+        <ion-list
+          style="background: #fafafa;"
+          :key="form.items.length">
+          <ion-item-sliding
+            v-for="(item, index) in form.items"
+            :key="index"
+            class="mb-lg">
+            <ion-item>
+              <ion-input
+                v-model="form.items[index]"
+                :placeholder="`Option ${index + 1}`"
+                style="background: #fafafa;">
+              </ion-input>
+            </ion-item>
+            <ion-item-options side="end" style="border-bottom: none;">
+              <ion-item-option
+                @click="form.items.splice(index, 1)"
+                style="margin-left: 10px;">
+                Delete
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+        <div style="height: 100px; text-align: center; opacity: 0.5;">
+          Swipe to delete
+        </div>
+      </div>
 
-          <ion-item-options side="end" style="border-bottom: none;">
-            <ion-item-option @click="() => {}" style="margin-left: 10px;">Delete</ion-item-option>
-          </ion-item-options>
-        </ion-item-sliding>
-      </ion-item>
-      <ion-button @click="form.items.push('')" size="small" style="float: right; margin-right: 10px;">Add</ion-button>
       <ion-button
-        class="poll-submit"
+        class="action-button poll-submit"
+        style="padding: 0 20px;"
         expand="block"
-        @click="createPoll(form)">
+        @click="savePoll(form)">
         Create Poll
       </ion-button>
     </ion-content>
@@ -62,8 +73,11 @@ import {
   IonItemOptions,
   IonItemSliding,
   IonLabel,
+  IonList,
   IonTitle,
   IonToolbar,
+  loadingController,
+  toastController
 } from '@ionic/vue';
 import { defineComponent } from 'vue';
 import { mapActions } from 'vuex';
@@ -80,6 +94,7 @@ export default defineComponent({
     IonItemOptions,
     IonItemSliding,
     IonLabel,
+    IonList,
     IonTitle,
     IonToolbar
   },
@@ -92,7 +107,32 @@ export default defineComponent({
   methods: {
     ...mapActions([
       'createPoll'
-    ])
+    ]),
+    async savePoll (form) {
+      const loading = await loadingController.create({
+        message: 'Creating poll...'
+      });
+      loading.present();
+      try {
+        await this.createPoll(form);
+        loading.dismiss();
+        this.$emit('close');
+        this.openToast('Poll saved successfully', 'success');
+      } catch (error) {
+        loading.dismiss();
+        this.openToast('Failed to save poll', 'danger');
+      }
+    },
+    async openToast (text, type) {
+      const toast = await toastController
+        .create({
+          message: text,
+          duration: 2000,
+          color: type,
+          position: 'top'
+        })
+      return toast.present();
+    },
   }
 })
 </script>
