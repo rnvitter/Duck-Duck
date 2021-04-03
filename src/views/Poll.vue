@@ -29,7 +29,7 @@
       style="padding: 0 20px;"
       expand="block"
       :disabled="disableSave"
-      @click="saveVote">
+      @click="voteButtonPress">
       {{ voteButtonText }}
     </ion-button>
   </layout>
@@ -56,6 +56,7 @@ export default defineComponent({
   methods: {
     ...mapActions([
       'getVotes',
+      'saveVote',
       'setPolls',
       'updateVote'
     ]),
@@ -71,7 +72,7 @@ export default defineComponent({
         return true
       }
     },
-    saveVote () {
+    voteButtonPress () {
       if (!this.savedVote) {
         this.saveVote({
           poll: this.poll.id,
@@ -79,7 +80,10 @@ export default defineComponent({
           vote: this.selectedVote
         })
       } else {
-        this.updateVote({ voteId: this.savedVote, vote: this.selectedVote })
+        this.updateVote({
+          voteId: this.savedVote.id,
+          vote: this.selectedVote
+        })
       }
     }
   },

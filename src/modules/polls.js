@@ -46,7 +46,7 @@ const store = {
         }
       })
     },
-    async addVote (state, { poll, user, vote }) {
+    async saveVote (state, { poll, user, vote }) {
       await fb.votesCollection.add({
         poll,
         user,
