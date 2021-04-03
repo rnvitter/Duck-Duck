@@ -297,6 +297,7 @@ ion-icon {
   left: 0;
   bottom: 10px;
   border-radius: 25px;
+  z-index: 2;
 }
 
 /* reusable classes */

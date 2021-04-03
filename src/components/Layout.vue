@@ -94,6 +94,7 @@ export default {
 
 <style>
 #container {
+  position: relative;
   background: #fafafa;
   padding: 15px;
   height: 100%;
