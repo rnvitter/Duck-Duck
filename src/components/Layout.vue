@@ -12,31 +12,12 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content>
-      <ion-header collapse="condense" class="ion-no-border">
-        <ion-toolbar>
-          <ion-title size="large">{{ title }}</ion-title>
-        </ion-toolbar>
-      </ion-header>
+    <ion-content style="position: relative; padding-bottom: 0;">
+      <div class="top-ad"></div>
       <div id="container">
         <slot />
       </div>
-      <slot name="fab"></slot>
     </ion-content>
-    <!-- <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>
-        <ion-title>Duck Duck</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-      <div id="container">
-        <slot />
-      </div>
-    </ion-content> -->
   </ion-page>
 </template>
 
@@ -102,6 +83,22 @@ export default defineComponent({
 
 <style>
 #container {
+  background: #fafafa;
   padding: 15px;
+  height: 100%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  position: absolute;
+  width: 100%;
+  top: 120px;
+  padding-bottom: 20px;
+}
+
+.top-ad {
+  position: absolute;
+  top: 0;
+  height: 150px;
+  width: 100%;
+  background: #eee;
 }
 </style>
