@@ -145,6 +145,16 @@ export default {
       await this.setPolls()
     }
     await this.getVotes(this.id)
+  },
+  watch: {
+    poll: {
+      deep: true,
+      handler () {
+        if (typeof this.poll === 'undefined') {
+          this.$router.push({ name: 'NotFound', params: { text: 'This poll does not exist' } })
+        }
+      }
+    }
   }
 }
 </script>

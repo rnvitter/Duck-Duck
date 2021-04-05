@@ -3,7 +3,9 @@
     <ion-card style="box-shadow: none; background: transparent; top: 50%; transform: translateY(-55%);">
       <ion-card-header class="ion-text-center">
         <ion-card-subtitle>Error 404</ion-card-subtitle>
-        <ion-card-title class="mb-lg">This is not the page you are looking for</ion-card-title>
+        <ion-card-title class="mb-lg">
+          {{ text }}
+        </ion-card-title>
         <img src="assets/404.png" style="width: 200px; height: auto;">
       </ion-card-header>
     </ion-card>
@@ -27,6 +29,12 @@ export default {
     IonCardTitle,
     IonCardSubtitle,
     IonContent
+  },
+  computed: {
+    text () {
+      const text = this.$route.params.text
+      return text ?? 'This is not the page you are looking for'
+    }
   }
 }
 </script>
