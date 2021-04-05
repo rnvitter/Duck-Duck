@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import Home from '../views/Home.vue'
+import Home from '../views/Home.vue';
+import NotFound from '../views/NotFound.vue';
 import { auth } from '@/firebase'
 
 const routes = [
@@ -22,7 +23,11 @@ const routes = [
     meta: {
       auth: true
     }
-  }
+  },
+  {
+    path: "/:catchAll(.*)",
+    component: NotFound,
+  },
 ]
 
 const router = createRouter({
