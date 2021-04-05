@@ -23,7 +23,7 @@
           <ion-button @click="form.items.push('')" size="small" style="float: right; margin-right: 10px;">Add Answer</ion-button>
         </div>
         <ion-list
-          style="background: #fafafa;"
+          style="background: var(--ion-canvas-color);"
           :key="form.items.length">
           <ion-item-sliding
             v-for="(item, index) in form.items"
@@ -33,7 +33,7 @@
               <ion-input
                 v-model="form.items[index]"
                 :placeholder="`Option ${index + 1}`"
-                style="background: #fafafa;">
+                style="background: var(--ion-canvas-color);">
               </ion-input>
             </ion-item>
             <ion-item-options side="end" style="border-bottom: none;">
@@ -139,7 +139,7 @@ export default {
 <style>
 .poll-form {
   padding: 20px;
-  background: #fafafa;
+  background: var(--ion-canvas-color);
   height: 100%;
 }
 </style>

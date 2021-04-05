@@ -4,7 +4,7 @@ ion-toolbar {
 }
 
 ion-content {
-  --background: #fafafa;
+  --background: var(--ion-canvas-color);
   --padding-bottom: 30px;
 }
 
@@ -32,9 +32,9 @@ h2 {
   font-size: 24px;
 }
 
-ion-icon {
+/* ion-icon {
   color: white;
-}
+} */
 
 .poll-item {
   width: 100%;
@@ -42,7 +42,7 @@ ion-icon {
   font-weight: bold;
   font-size: 18px;
   padding: 10px 20px;
-  background: white;
+  background: var(--ion-background-color);
   box-shadow: 0 1px 4px 1px rgba(0,0,0,0.05) !important;
   z-index: 0;
   margin: 20px 0;

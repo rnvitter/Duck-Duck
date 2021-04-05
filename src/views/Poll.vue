@@ -60,11 +60,11 @@ export default {
     ]),
     getGradient (item) {
       if (!this.savedVote) return
-      const color = 'var(--ion-color-secondary-tint)';
+      const color = 'var(--ion-color-tertiary)';
       const totalVotes = this.votes.length;
       const votesFor = this.votes.filter(v => v.vote === item).length;
       const perc = (votesFor / totalVotes) * 100
-      return `linear-gradient(90deg, ${color} 0%, ${color} ${perc}%, white ${perc}%, white 100%);`;
+      return `linear-gradient(90deg, ${color} 0%, ${color} ${perc}%, var(--ion-background-color) ${perc}%, var(--ion-background-color) 100%);`;
     },
     isSelected (item) {
       const savedVote = this.savedVote
@@ -170,7 +170,7 @@ export default {
   bottom: 0;
   left: 0;
   pointer-events: none;
-  background-image: linear-gradient(to bottom, rgba(250,250,250, 0), rgba(250,250,250, 1) 70%, rgba(250,250,250, 1) 100%);
+  background-image: var(--ion-gradient);
   width: 100%;
   height: 150px;
 }
@@ -186,7 +186,7 @@ export default {
 
 .poll-answer {
   position: relative;
-  background: white;
+  background: var(--ion-background-color);
   transition: .3s ease-in-out;
 }
 

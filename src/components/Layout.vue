@@ -95,7 +95,7 @@ export default {
 <style>
 #container {
   position: relative;
-  background: #fafafa;
+  background: var(--ion-canvas-color);
   padding: 15px;
   height: 100%;
   /* border-top-left-radius: 30px;
