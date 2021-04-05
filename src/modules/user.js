@@ -44,12 +44,14 @@ export default {
         router.push('/')
       }
     },
-    async logout ({ commit }) {
-      await fb.auth.signOut()
+    async logout ({ commit, rootState }) {
+      if (rootState.polls.pollListenerUnsubscribe) rootState.polls.pollListenerUnsubscribe();
+      if (rootState.polls.votesListenerUnsubscribe) rootState.polls.votesListenerUnsubscribe();
+      await fb.auth.signOut();
 
-      commit('setUserProfile', {})
+      commit('setUserProfile', {});
 
-      router.push('/login')
+      router.push('/login');
     },
   },
   getters: {

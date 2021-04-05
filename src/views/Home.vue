@@ -20,7 +20,7 @@ import {
   IonModal
 } from '@ionic/vue';
 import { add } from 'ionicons/icons';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 import { Layout, PollItem, PollForm } from '@/components'
 
@@ -39,6 +39,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters([
+      'pollListenerUnsubscribe'
+    ]),
     polls () {
       return this.$store.getters.polls();
     }
@@ -52,7 +55,7 @@ export default {
     open: false
   }),
   async beforeMount () {
-    await this.setPolls()
+    if (!this.pollListenerUnsubscribe) await this.setPolls()
   }
 };
 </script>

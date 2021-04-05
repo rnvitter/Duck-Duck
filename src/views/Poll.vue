@@ -115,6 +115,8 @@ export default {
   },
   computed: {
     ...mapGetters([
+      'pollListenerUnsubscribe',
+      'votesListenerUnsubscribe',
       'userId'
     ]),
     id () {
@@ -141,9 +143,7 @@ export default {
     }
   },
   async beforeMount () {
-    if (this.$store.getters.polls().length === 0) {
-      await this.setPolls()
-    }
+    if (!this.pollListenerUnsubscribe) await this.setPolls()
     await this.getVotes(this.id)
   },
   watch: {
@@ -155,6 +155,9 @@ export default {
         }
       }
     }
+  },
+  beforeUnmount () {
+    this.votesListenerUnsubscribe()
   }
 }
 </script>

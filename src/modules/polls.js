@@ -4,14 +4,22 @@ import { auth } from '@/firebase';
 const store = {
   state: {
     polls: [],
-    votes: []
+    pollListenerUnsubscribe: null,
+    votes: [],
+    votesListenerUnsubscribe: null
   },
   mutations: {
     setPolls (state, polls) {
       state.polls = polls
     },
+    setPollListenerUnsubscribe (state, listener) {
+      state.pollListenerUnsubscribe = listener
+    },
     setVotes (state, votes) {
       state.votes = votes
+    },
+    setVotesListenerUnsubscribe (state, listener) {
+      state.votesListenerUnsubscribe = listener
     }
   },
   actions: {
@@ -42,7 +50,7 @@ const store = {
       })
     },
     async setPolls ({ commit }) {
-      fb.pollsCollection.orderBy('created', 'desc').onSnapshot(snapshot => {
+      const listener = fb.pollsCollection.orderBy('created', 'desc').onSnapshot(snapshot => {
         let polls = []
         snapshot.forEach(doc => {
           let poll = doc.data()
@@ -51,9 +59,10 @@ const store = {
         })
         commit('setPolls', polls)
       })
+      commit('setPollListenerUnsubscribe', listener)
     },
     async getVotes ({ commit }, poll) {
-      fb.votesCollection.where('poll', '==', poll).onSnapshot(snapshot => {
+      const listener = fb.votesCollection.where('poll', '==', poll).onSnapshot(snapshot => {
         let votes = []
         snapshot.forEach(doc => {
           let vote = doc.data()
@@ -62,6 +71,7 @@ const store = {
         })
         commit('setVotes', votes)
       })
+      commit('setVotesListenerUnsubscribe', listener)
     }
   },
   getters: {
@@ -71,8 +81,14 @@ const store = {
       }
       return state.polls
     },
+    pollListenerUnsubscribe (state) {
+      return state.pollListenerUnsubscribe
+    },
     votes: (state) => (id) => {
       return state.votes.filter(v => v.poll === id)
+    },
+    votesListenerUnsubscribe (state) {
+      return state.votesListenerUnsubscribe
     }
   }
 }
