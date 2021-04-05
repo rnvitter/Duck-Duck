@@ -7,7 +7,7 @@
     </ion-header> -->
 
     <ion-content :fullscreen="true">
-      <ion-card style="box-shadow: none; background: transparent; top: 50%; transform: translateY(-55%);">
+      <ion-card style="box-shadow: none; background: transparent; top: 50%; transform: translateY(-50%);">
         <ion-card-header class="ion-text-center">
           <ion-card-title>Duck Duck</ion-card-title>
           <img src="assets/logo.png" style="width: 200px; height: auto;">

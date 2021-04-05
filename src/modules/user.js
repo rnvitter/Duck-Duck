@@ -22,7 +22,7 @@ export default {
 
       const imageUrl = [
         `https://www.gravatar.com/avatar/`,
-        md5('ryanvitter@gmail.com'.trim().toLowerCase()),
+        md5(form.email.trim().toLowerCase()),
         `?s=60`,
         `&d=retro`
       ];
