@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
-import Home from '../views/Home.vue';
-import NotFound from '../views/NotFound.vue';
+import Home from '@/views/Home.vue';
+import NotFound from '@/views/NotFound.vue';
 import { auth } from '@/firebase'
 
 const routes = [
@@ -19,7 +19,7 @@ const routes = [
   {
     path: '/polls/:id',
     name: 'Poll',
-    component: () => import('../views/Poll.vue'),
+    component: () => import('@/views/Poll.vue'),
     meta: {
       auth: true
     }
