@@ -12,7 +12,7 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-content style="position: relative; padding-bottom: 0;">
+    <ion-content style="position: relative;">
       <!-- <div class="top-ad"></div> -->
       <div id="container">
         <h2>{{ title }}</h2>

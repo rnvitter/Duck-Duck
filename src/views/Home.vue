@@ -7,6 +7,7 @@
       Create Poll
     </ion-button>
     <poll-item v-for="(poll, index) in polls" :key="index" :poll="poll"></poll-item>
+    <div style="height: 5px;"></div>
     <ion-modal
       :is-open="open">
       <poll-form @close="open = false"></poll-form>
