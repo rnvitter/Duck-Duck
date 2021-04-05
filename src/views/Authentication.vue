@@ -10,7 +10,7 @@
       <ion-card style="box-shadow: none; background: transparent; top: 50%; transform: translateY(-55%);">
         <ion-card-header class="ion-text-center">
           <ion-card-title>Duck Duck</ion-card-title>
-          <img src="assets/duck-duck-logo-3.png" style="width: 200px; height: auto;">
+          <img src="assets/logo.png" style="width: 200px; height: auto;">
         </ion-card-header>
 
         <ion-card-content style="max-width: 400px; margin: 0 auto;">
